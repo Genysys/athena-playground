@@ -31,11 +31,10 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
-      - name: Clippy
-        uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: -- -D warnings
+
+      - name: Check with clippy
+        run: cargo clippy --all-features
+
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
